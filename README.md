@@ -11,10 +11,10 @@
 
 <p align="center">
 
-  <img alt="top language" src="https://img.shields.io/github/languages/top/rafashiga/movieapp?style=flat-square">
-  <img alt="language count" src="https://img.shields.io/github/languages/count/rafashiga/movieapp?style=flat-square">
-  <img alt="Repository size" src="https://img.shields.io/github/repo-size/rafashiga/movieapp?style=flat-square">
-  <img alt="Last commit" src="https://img.shields.io/github/last-commit/rafashiga/movieapp?style=flat-square">
+  <img alt="top language" src="https://img.shields.io/github/languages/top/rafashiga/movieApp?style=flat-square">
+  <img alt="language count" src="https://img.shields.io/github/languages/count/rafashiga/movieApp?style=flat-square">
+  <img alt="Repository size" src="https://img.shields.io/github/repo-size/rafashiga/movieApp?style=flat-square">
+  <img alt="Last commit" src="https://img.shields.io/github/last-commit/rafashiga/movieApp?style=flat-square">
   <br>
   <br>
   <a href="#space_invader-technologies">Technologies</a> |
@@ -30,6 +30,7 @@
 - React Native
 - Typescript
 - [React Navigation v5](https://reactnavigation.org/docs/getting-started/)
+- Styled Components
 
 ## :information_source: How to use
 
@@ -37,10 +38,10 @@ To run this project you'll need [GIT](https://git-scm.com/), [NodeJS](https://no
 
 ```bash
 # Clone this repository
-$ git clone https://github.com/rafashiga/movieapp.git
+$ git clone https://github.com/rafashiga/movieApp.git
 
 # Go into the repository
-$ cd weatherapp
+$ cd movieApp
 
 # Install dependencies
 $ yarn install
