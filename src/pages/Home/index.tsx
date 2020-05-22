@@ -25,6 +25,7 @@ const Home: React.FC<Props> = ({ navigation }) => {
       </Form>
       <TabGenre />
       <TabMovies title="Hot Movies" navigation={navigation} />
+      <TabMovies title="Hot Movies" navigation={navigation} />
     </Container>
   );
 };

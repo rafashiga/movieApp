@@ -20,13 +20,14 @@ export const Card = styled.View.attrs({
   width: 90%;
   border-radius: 5px;
   margin: 0 auto;
+  margin-bottom: 50px;
   background: #fff;
   padding: 15px 12px;
   flex-direction: row;
   justify-content: space-between;
 `;
 
-export const CardImage = styled.Image`
+export const CardImage = styled.View`
   width: 120px;
   height: 180px;
   background: #333;
