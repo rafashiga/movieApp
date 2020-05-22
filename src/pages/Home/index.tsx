@@ -4,7 +4,11 @@ import TabGenre from '../../components/TabGenre';
 import Input from '../../components/Input';
 import TabMovies from '../../components/TabMovies';
 
-const Home: React.FC = () => {
+interface Props {
+  navigation: any;
+}
+
+const Home: React.FC<Props> = ({ navigation }) => {
   const [search, setSearch] = useState<string>('');
 
   return (
@@ -20,7 +24,7 @@ const Home: React.FC = () => {
         />
       </Form>
       <TabGenre />
-      <TabMovies title="Hot Movies" />
+      <TabMovies title="Hot Movies" navigation={navigation} />
     </Container>
   );
 };

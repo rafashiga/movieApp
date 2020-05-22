@@ -16,14 +16,15 @@ import {
 
 interface Props {
   title: string;
+  navigation: any;
 }
 
-const TabMovies: React.FC<Props> = ({ title }) => {
+const TabMovies: React.FC<Props> = ({ title, navigation }) => {
   return (
     <Container>
       <Header>
         <Title>{title}</Title>
-        <MoreButton>
+        <MoreButton onPress={() => navigation.navigate('List')}>
           <ButtonText>more &gt;</ButtonText>
         </MoreButton>
       </Header>
