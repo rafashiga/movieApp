@@ -9,7 +9,22 @@ import {
   CardDescription,
 } from './styles';
 
-const List: React.FC = () => {
+interface Props {
+  navigation: any;
+  route: {
+    key: string;
+    name: string;
+    params: {
+      title: string;
+    };
+  };
+}
+
+const List: React.FC<Props> = ({ navigation, route }) => {
+  navigation.setOptions({
+    title: route.params.title,
+  });
+
   return (
     <Container>
       <Card>

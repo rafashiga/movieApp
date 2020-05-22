@@ -3,7 +3,6 @@ import styled from 'styled-components/native';
 export const Container = styled.ScrollView`
   flex: 1;
   background: #fff;
-  margin-bottom: 40px;
 `;
 
 export const Form = styled.View`

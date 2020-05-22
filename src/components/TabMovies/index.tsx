@@ -24,7 +24,7 @@ const TabMovies: React.FC<Props> = ({ title, navigation }) => {
     <Container>
       <Header>
         <Title>{title}</Title>
-        <MoreButton onPress={() => navigation.navigate('List')}>
+        <MoreButton onPress={() => navigation.navigate('List', { title })}>
           <ButtonText>more &gt;</ButtonText>
         </MoreButton>
       </Header>

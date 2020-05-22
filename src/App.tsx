@@ -1,7 +1,6 @@
 import React from 'react';
-import Routes from './routes';
-
 import './config/ReactronConfig';
+import Routes from './routes';
 
 const App: React.FC = () => {
   return <Routes />;
