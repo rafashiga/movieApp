@@ -41,7 +41,7 @@ export const TabItem = styled.View`
 
 export const TabBody = styled.View``;
 
-export const TabImage = styled.View.attrs({
+export const TabImage = styled.Image.attrs({
   shadowOffset: {
     width: 0,
     height: 6,
@@ -61,6 +61,7 @@ export const TabImage = styled.View.attrs({
 export const Rating = styled.View.attrs({
   elevation: 8,
 })`
+  min-width: 35px;
   position: absolute;
   bottom: 2px;
   padding: 8px;
@@ -72,6 +73,7 @@ export const Rating = styled.View.attrs({
 export const RatingText = styled.Text`
   color: #fff;
   font-weight: bold;
+  text-align: center;
 `;
 
 export const TabText = styled.Text`

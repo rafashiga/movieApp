@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Container,
   Card,
@@ -7,7 +7,10 @@ import {
   CardTitle,
   CardSubtitle,
   CardDescription,
+  Pagination,
 } from './styles';
+import { Popular } from '~/models/Popular';
+import api from '~/services/api';
 
 interface Props {
   navigation: any;
@@ -16,44 +19,54 @@ interface Props {
     name: string;
     params: {
       title: string;
+      type: string;
     };
   };
 }
 
 const List: React.FC<Props> = ({ navigation, route }) => {
+  const { title, type } = route.params;
+  const [popular, setPopular] = useState<Popular>();
+
   navigation.setOptions({
-    title: route.params.title,
+    title,
   });
+
+  useEffect(() => {
+    const getPopular = async () => {
+      const response = await api.get(type);
+
+      setPopular(response.data);
+      console.tron.log(response.data);
+    };
+
+    getPopular();
+  }, []);
 
   return (
     <Container>
-      <Card>
-        <CardImage />
-        <CardBody>
-          <CardTitle>Filme</CardTitle>
-          <CardSubtitle>
-            Exercitation esse exercitation Lorem ut enim magna minim.
-          </CardSubtitle>
-          <CardDescription>
-            Minim in officia ut commodo quis et. Est aliqua qui irure dolor do
-            aute Lorem officia nostrud. Incididunt.
-          </CardDescription>
-        </CardBody>
-      </Card>
-
-      <Card>
-        <CardImage />
-        <CardBody>
-          <CardTitle>Filme</CardTitle>
-          <CardSubtitle>
-            Exercitation esse exercitation Lorem ut enim magna minim.
-          </CardSubtitle>
-          <CardDescription>
-            Minim in officia ut commodo quis et. Est aliqua qui irure dolor do
-            aute Lorem officia nostrud. Incididunt.
-          </CardDescription>
-        </CardBody>
-      </Card>
+      {popular &&
+        popular.results.map((movie) => (
+          <Card key={movie.id}>
+            <CardImage
+              source={{
+                uri: `https://image.tmdb.org/t/p/w500/${movie.poster_path}`,
+              }}
+            />
+            <CardBody>
+              <CardTitle>{movie.title}</CardTitle>
+              <CardSubtitle>
+                Exercitation esse exercitation Lorem ut enim magna minim.
+              </CardSubtitle>
+              <CardDescription>
+                {movie.overview.length > 100
+                  ? `${movie.overview.substring(0, 100)} ...`
+                  : movie.overview}
+              </CardDescription>
+            </CardBody>
+          </Card>
+        ))}
+      <Pagination />
     </Container>
   );
 };

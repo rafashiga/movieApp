@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Container, Form, Label } from './styles';
-import TabGenre from '../../components/TabGenre';
-import Input from '../../components/Input';
-import TabMovies from '../../components/TabMovies';
+import TabGenre from '~/components/TabGenre';
+import Input from '~/components/Input';
+import TabMovies from '~/components/TabMovies';
+import api from '~/services/api';
+import { Popular } from '~/models/Popular';
 
 interface Props {
   navigation: any;
@@ -10,6 +12,18 @@ interface Props {
 
 const Home: React.FC<Props> = ({ navigation }) => {
   const [search, setSearch] = useState<string>('');
+  const [popular, setPopular] = useState<Popular>();
+
+  useEffect(() => {
+    const getPopular = async () => {
+      const response = await api.get('popular');
+
+      setPopular(response.data);
+      console.tron.log(response.data);
+    };
+
+    getPopular();
+  }, []);
 
   return (
     <Container>
@@ -24,8 +38,7 @@ const Home: React.FC<Props> = ({ navigation }) => {
         />
       </Form>
       <TabGenre />
-      <TabMovies title="Hot Movies" navigation={navigation} />
-      <TabMovies title="Hot Movies" navigation={navigation} />
+      <TabMovies title="Hot Movies" data={popular} navigation={navigation} />
     </Container>
   );
 };
