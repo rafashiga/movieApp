@@ -41,6 +41,8 @@ export const TabItem = styled.View`
 
 export const TabBody = styled.View``;
 
+export const TabButton = styled.TouchableOpacity``;
+
 export const TabImage = styled.Image.attrs({
   shadowOffset: {
     width: 0,

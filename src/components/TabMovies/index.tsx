@@ -8,6 +8,7 @@ import {
   ButtonText,
   TabsContainer,
   TabBody,
+  TabButton,
   TabImage,
   TabItem,
   TabText,
@@ -22,6 +23,10 @@ interface Props {
 }
 
 const TabMovies: React.FC<Props> = ({ title, navigation, data }) => {
+  const handleImagePress = (id: number) => {
+    navigation.navigate('Detail', { id });
+  };
+
   return (
     <Container>
       <Header>
@@ -38,11 +43,13 @@ const TabMovies: React.FC<Props> = ({ title, navigation, data }) => {
           data.results.map((movie) => (
             <TabItem key={movie.id}>
               <TabBody>
-                <TabImage
-                  source={{
-                    uri: `https://image.tmdb.org/t/p/w500/${movie.poster_path}`,
-                  }}
-                />
+                <TabButton onPress={() => handleImagePress(movie.id)}>
+                  <TabImage
+                    source={{
+                      uri: `https://image.tmdb.org/t/p/w500/${movie.poster_path}`,
+                    }}
+                  />
+                </TabButton>
                 <Rating>
                   <RatingText>{movie.vote_average}</RatingText>
                 </Rating>

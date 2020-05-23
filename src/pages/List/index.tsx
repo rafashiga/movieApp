@@ -6,9 +6,12 @@ import {
   CardImage,
   CardTitle,
   CardSubtitle,
+  CardSubtitleText,
+  CardPress,
   CardDescription,
   Pagination,
 } from './styles';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 import { Popular } from '~/models/Popular';
 import api from '~/services/api';
 
@@ -34,37 +37,48 @@ const List: React.FC<Props> = ({ navigation, route }) => {
 
   useEffect(() => {
     const getPopular = async () => {
-      const response = await api.get(type);
+      const response = await api.get(`movie/${type}`);
 
       setPopular(response.data);
       console.tron.log(response.data);
     };
 
     getPopular();
-  }, []);
+  }, [type]);
+
+  const handlePressCard = (id: number) => {
+    navigation.navigate('Detail', { id });
+  };
 
   return (
     <Container>
       {popular &&
         popular.results.map((movie) => (
-          <Card key={movie.id}>
-            <CardImage
-              source={{
-                uri: `https://image.tmdb.org/t/p/w500/${movie.poster_path}`,
-              }}
-            />
-            <CardBody>
-              <CardTitle>{movie.title}</CardTitle>
-              <CardSubtitle>
-                Exercitation esse exercitation Lorem ut enim magna minim.
-              </CardSubtitle>
-              <CardDescription>
-                {movie.overview.length > 100
-                  ? `${movie.overview.substring(0, 100)} ...`
-                  : movie.overview}
-              </CardDescription>
-            </CardBody>
-          </Card>
+          <CardPress key={movie.id} onPress={() => handlePressCard(movie.id)}>
+            <Card>
+              <CardImage
+                source={{
+                  uri: `https://image.tmdb.org/t/p/w500/${movie.poster_path}`,
+                }}
+              />
+              <CardBody>
+                <CardTitle>
+                  {movie.title.length > 15
+                    ? `${movie.title.substring(0, 14)}...`
+                    : movie.title}
+                </CardTitle>
+                <CardSubtitle>
+                  <Icon name="star" size={18} color="#f7b100" />
+                  <CardSubtitleText>{movie.vote_average}</CardSubtitleText>
+                </CardSubtitle>
+                <CardDescription>
+                  {movie.overview.length > 100
+                    ? `${movie.overview.substring(0, 100)} ...`
+                    : movie.overview}
+                </CardDescription>
+              </CardBody>
+            </Card>
+          </CardPress>
         ))}
       <Pagination />
     </Container>

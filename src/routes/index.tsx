@@ -9,6 +9,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import Home from '../pages/Home';
 import List from '../pages/List';
+import Detail from '../pages/Detail/index';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -38,7 +39,14 @@ const HomeTabs = () => (
 
 const Routes = () => (
   <NavigationContainer>
-    <Stack.Navigator>
+    <Stack.Navigator
+      screenOptions={{
+        headerStyle: {
+          shadowColor: 'transparent',
+          backgroundColor: '#fff',
+          elevation: 0,
+        },
+      }}>
       <Stack.Screen
         name="Home"
         component={HomeTabs}
@@ -51,6 +59,7 @@ const Routes = () => (
         }}
       />
       <Stack.Screen name="List" component={List} />
+      <Stack.Screen name="Detail" component={Detail} />
     </Stack.Navigator>
   </NavigationContainer>
 );

@@ -1,7 +1,8 @@
 import styled from 'styled-components/native';
+import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 
 export const Container = styled.ScrollView`
-  background: #f0f0f0;
+  background: #fff;
 `;
 
 export const Card = styled.View.attrs({
@@ -33,6 +34,8 @@ export const CardImage = styled.Image`
   border-radius: 5px;
 `;
 
+export const CardPress = styled.TouchableWithoutFeedback``;
+
 export const CardBody = styled.View`
   width: 60%;
 `;
@@ -42,10 +45,17 @@ export const CardTitle = styled.Text`
   font-weight: bold;
 `;
 
-export const CardSubtitle = styled.Text`
-  font-size: 14px;
+export const CardSubtitle = styled.View`
   margin-bottom: 10px;
-  color: #444;
+  flex-direction: row;
+  align-items: center;
+`;
+
+export const CardSubtitleText = styled.Text`
+  margin-left: 1px;
+  font-size: 14px;
+  font-weight: bold;
+  color: #f7b100;
 `;
 
 export const CardDescription = styled.Text`

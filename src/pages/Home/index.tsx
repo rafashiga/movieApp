@@ -16,7 +16,7 @@ const Home: React.FC<Props> = ({ navigation }) => {
 
   useEffect(() => {
     const getPopular = async () => {
-      const response = await api.get('popular');
+      const response = await api.get('movie/popular');
 
       setPopular(response.data);
       console.tron.log(response.data);
