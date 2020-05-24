@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 import {
   Container,
   Card,
@@ -10,8 +11,8 @@ import {
   CardPress,
   CardDescription,
   Pagination,
+  MessageError,
 } from './styles';
-import Icon from 'react-native-vector-icons/MaterialIcons';
 import { Popular } from '~/models/Popular';
 import api from '~/services/api';
 
@@ -40,7 +41,6 @@ const List: React.FC<Props> = ({ navigation, route }) => {
       const response = await api.get(`movie/${type}`);
 
       setPopular(response.data);
-      console.tron.log(response.data);
     };
 
     getPopular();

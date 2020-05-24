@@ -25,6 +25,10 @@ const Home: React.FC<Props> = ({ navigation }) => {
     getPopular();
   }, []);
 
+  const handleSearch = async () => {
+    navigation.navigate('SearchPage', { search });
+  };
+
   return (
     <Container>
       <Form>
@@ -35,6 +39,7 @@ const Home: React.FC<Props> = ({ navigation }) => {
           autoCapitalize="none"
           value={search}
           onChangeText={setSearch}
+          onSubmitEditing={handleSearch}
         />
       </Form>
       <TabGenre />

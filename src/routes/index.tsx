@@ -9,7 +9,8 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import Home from '../pages/Home';
 import List from '../pages/List';
-import Detail from '../pages/Detail/index';
+import Detail from '../pages/Detail';
+import SearchPage from '../pages/Search';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -60,6 +61,7 @@ const Routes = () => (
       />
       <Stack.Screen name="List" component={List} />
       <Stack.Screen name="Detail" component={Detail} />
+      <Stack.Screen name="SearchPage" component={SearchPage} />
     </Stack.Navigator>
   </NavigationContainer>
 );

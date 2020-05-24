@@ -1,8 +1,20 @@
 import styled from 'styled-components/native';
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 
-export const Container = styled.ScrollView`
+export const Container = styled.View`
   background: #fff;
+  height: 100%;
+`;
+
+export const Form = styled.View`
+  margin: 0 20px;
+`;
+
+export const Label = styled.Text`
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10px;
 `;
 
 export const Card = styled.View.attrs({
@@ -69,4 +81,14 @@ export const Pagination = styled.View`
   margin: 50px 0;
 `;
 
-export const MessageError = styled.Text``;
+export const MessageError = styled.Text`
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+  margin-top: 40px;
+  text-align: center;
+`;
+
+export const Loading = styled.View`
+  padding: 25px 0;
+`;
