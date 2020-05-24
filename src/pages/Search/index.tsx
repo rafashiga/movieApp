@@ -18,7 +18,7 @@ import {
   Loading,
 } from './styles';
 import api from '~/services/api';
-import { Result } from '~/models/Search';
+import { Result } from '~/models/Result';
 import Input from '~/components/Input';
 
 interface Props {

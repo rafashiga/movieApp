@@ -1,5 +1,5 @@
 import React from 'react';
-import { Popular } from '../../models/Popular';
+import { Result } from '~/models/Result';
 import {
   Container,
   Header,
@@ -19,10 +19,11 @@ import {
 interface Props {
   title: string;
   navigation: any;
-  data: Popular;
+  data: Result[];
+  type: string;
 }
 
-const TabMovies: React.FC<Props> = ({ title, navigation, data }) => {
+const TabMovies: React.FC<Props> = ({ title, navigation, type, data }) => {
   const handleImagePress = (id: number) => {
     navigation.navigate('Detail', { id });
   };
@@ -32,15 +33,13 @@ const TabMovies: React.FC<Props> = ({ title, navigation, data }) => {
       <Header>
         <Title>{title}</Title>
         <MoreButton
-          onPress={() =>
-            navigation.navigate('List', { title, type: 'popular' })
-          }>
+          onPress={() => navigation.navigate('List', { title, type })}>
           <ButtonText>more &gt;</ButtonText>
         </MoreButton>
       </Header>
       <TabsContainer>
         {data &&
-          data.results.map((movie) => (
+          data.map((movie) => (
             <TabItem key={movie.id}>
               <TabBody>
                 <TabButton onPress={() => handleImagePress(movie.id)}>

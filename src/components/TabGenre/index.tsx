@@ -1,4 +1,5 @@
 import React from 'react';
+import { Genres, Genre } from '../../models/Genres';
 import {
   Container,
   Header,
@@ -10,7 +11,11 @@ import {
   TabText,
 } from './styles';
 
-const TabGenre: React.FC = () => {
+interface Props {
+  data: Genres;
+}
+
+const TabGenre: React.FC<Props> = ({ data }) => {
   return (
     <Container>
       <Header>
@@ -20,24 +25,11 @@ const TabGenre: React.FC = () => {
         </MoreButton>
       </Header>
       <TabsContainer>
-        <TabItem>
-          <TabText>OK</TabText>
-        </TabItem>
-        <TabItem>
-          <TabText>OK</TabText>
-        </TabItem>
-        <TabItem>
-          <TabText>OK</TabText>
-        </TabItem>
-        <TabItem>
-          <TabText>OK</TabText>
-        </TabItem>
-        <TabItem>
-          <TabText>OK</TabText>
-        </TabItem>
-        <TabItem>
-          <TabText>OK</TabText>
-        </TabItem>
+        {data?.genres.map((genre: Genre) => (
+          <TabItem key={genre.id}>
+            <TabText>{genre.name}</TabText>
+          </TabItem>
+        ))}
       </TabsContainer>
     </Container>
   );

@@ -48,9 +48,20 @@ const Routes = () => (
           elevation: 0,
         },
       }}>
-      <Stack.Screen
+      {/* <Stack.Screen
         name="Home"
         component={HomeTabs}
+        options={{
+          title: 'movieApp',
+          headerTintColor: '#000',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },
+        }}
+      /> */}
+      <Stack.Screen
+        name="Home"
+        component={Home}
         options={{
           title: 'movieApp',
           headerTintColor: '#000',
