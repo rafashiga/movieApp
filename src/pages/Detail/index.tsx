@@ -58,7 +58,9 @@ const Detail: React.FC<Props> = ({ navigation, route }) => {
       <MovieInfo>
         <InfoItem>
           <InfoTitle>Genre</InfoTitle>
-          <InfoDescription>{movie?.genres[0].name}</InfoDescription>
+          <InfoDescription>
+            {movie?.genres.length ? movie?.genres[0].name : '?'}
+          </InfoDescription>
         </InfoItem>
         <InfoItem>
           <InfoTitle>Language</InfoTitle>
@@ -66,15 +68,19 @@ const Detail: React.FC<Props> = ({ navigation, route }) => {
         </InfoItem>
         <InfoItem>
           <InfoTitle>Date</InfoTitle>
-          <InfoDescription>{movie?.release_date}</InfoDescription>
+          <InfoDescription>
+            {movie?.release_date || '0000-00-00'}
+          </InfoDescription>
         </InfoItem>
       </MovieInfo>
-      <MovieDescription>
-        <MovieContainer>
-          <MovieTitleOverview>Description</MovieTitleOverview>
-          <MovieOverview>{movie?.overview}</MovieOverview>
-        </MovieContainer>
-      </MovieDescription>
+      {!!movie?.overview && (
+        <MovieDescription>
+          <MovieContainer>
+            <MovieTitleOverview>Description</MovieTitleOverview>
+            <MovieOverview>{movie?.overview}</MovieOverview>
+          </MovieContainer>
+        </MovieDescription>
+      )}
     </Container>
   );
 };

@@ -68,5 +68,3 @@ export const CardDescription = styled.Text`
 export const Pagination = styled.View`
   margin: 50px 0;
 `;
-
-export const MessageError = styled.Text``;

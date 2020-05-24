@@ -62,6 +62,7 @@ export const InfoDescription = styled.Text`
 
 export const MovieDescription = styled.View`
   background: rgb(103, 58, 183);
+  min-height: 200px;
   margin-top: 30px;
   border-top-left-radius: 30px;
   border-top-right-radius: 30px;
