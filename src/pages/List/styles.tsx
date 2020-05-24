@@ -29,7 +29,7 @@ export const Card = styled.View.attrs({
 export const CardImage = styled.Image`
   width: 120px;
   height: 180px;
-  background: #333;
+  background: #f0f0f0;
   margin-top: -40px;
   border-radius: 5px;
 `;

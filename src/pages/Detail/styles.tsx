@@ -19,6 +19,7 @@ export const MovieImage = styled.Image.attrs({
   height: 290px;
   margin: 0 auto;
   border-radius: 10px;
+  background: #f0f0f0;
 `;
 
 export const MovieTitle = styled.Text`

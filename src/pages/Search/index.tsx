@@ -123,6 +123,9 @@ const SearchPage: React.FC<Props> = ({ navigation, route }) => {
           onChangeText={setSearchText}
         />
       </Form> */}
+      {loading && results.length === 0 && (
+        <MessageError>Loading ...</MessageError>
+      )}
       {results.length > 0 && !error && (
         <FlatList
           data={results}

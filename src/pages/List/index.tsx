@@ -11,7 +11,6 @@ import {
   CardPress,
   CardDescription,
   Pagination,
-  MessageError,
 } from './styles';
 import { Popular } from '~/models/Popular';
 import api from '~/services/api';
