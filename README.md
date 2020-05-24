@@ -21,7 +21,7 @@
   <a href="#information_source-how-to-use">How to use</a>
   <br>
   <br>
-  <!-- <img src="./src/assets/img/website.png"> -->
+  <img src="./src/assets/app.png">
   <br>
 </p>
 
@@ -31,6 +31,8 @@
 - Typescript
 - [React Navigation v5](https://reactnavigation.org/docs/getting-started/)
 - Styled Components
+- Axios
+- [TMDb API](https://www.themoviedb.org/)
 
 ## :information_source: How to use
 
