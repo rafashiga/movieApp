@@ -8,6 +8,7 @@ export const Container = styled.View`
 
 export const Form = styled.View`
   margin: 0 20px;
+  padding-bottom: 10px;
 `;
 
 export const Label = styled.Text`

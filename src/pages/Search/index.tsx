@@ -34,8 +34,7 @@ interface Props {
 }
 
 const SearchPage: React.FC<Props> = ({ navigation, route }) => {
-  // const [searchText, setSearchText] = useState<string>(route.params.search);
-  // const [search, setSearch] = useState<Search>();
+  const [searchText, setSearchText] = useState<string>(route.params.search);
   const [results, setResults] = useState<Result[]>([]);
   const [page, setPage] = useState<number>(1);
   const [loading, setLoading] = useState<boolean>(false);
@@ -112,17 +111,34 @@ const SearchPage: React.FC<Props> = ({ navigation, route }) => {
     );
   };
 
+  const handleSubmit = async () => {
+    setLoading(true);
+    setResults([]);
+    setPage(1);
+
+    const response = await api.get('search/movie', {
+      params: {
+        query: searchText,
+        page,
+      },
+    });
+
+    setLoading(false);
+    setResults(response.data.results);
+  };
+
   return (
     <Container>
-      {/* <Form>
+      <Form>
         <Input
           icon="search"
           placeholder="search movies"
           autoCapitalize="none"
           value={searchText}
           onChangeText={setSearchText}
+          onSubmitEditing={handleSubmit}
         />
-      </Form> */}
+      </Form>
       {loading && results.length === 0 && (
         <MessageError>Loading ...</MessageError>
       )}
