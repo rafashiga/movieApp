@@ -31,15 +31,15 @@ const Home: React.FC<Props> = ({ navigation }) => {
       setUpcoming(response.data);
     };
 
-    const getGenres = async () => {
-      const response = await api.get('genre/movie/list');
+    // const getGenres = async () => {
+    //   const response = await api.get('genre/movie/list');
 
-      setGenres(response.data);
-    };
+    //   setGenres(response.data);
+    // };
 
     getPopular();
     getUpcoming();
-    getGenres();
+    // getGenres();
   }, []);
 
   const handleSearch = async () => {
@@ -59,7 +59,7 @@ const Home: React.FC<Props> = ({ navigation }) => {
           onSubmitEditing={handleSearch}
         />
       </Form>
-      <TabGenre data={genres} />
+      {/* <TabGenre data={genres} /> */}
       <TabMovies
         title="Hot Movies"
         data={popular?.results}

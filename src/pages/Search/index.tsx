@@ -5,7 +5,6 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import {
   Container,
   Form,
-  Label,
   Card,
   CardBody,
   CardImage,
