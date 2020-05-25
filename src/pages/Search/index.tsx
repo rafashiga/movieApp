@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { ActivityIndicator, View } from 'react-native';
+import { ActivityIndicator } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import {
@@ -57,7 +57,7 @@ const SearchPage: React.FC<Props> = ({ navigation, route }) => {
 
       setLoading(false);
 
-      if (results.length > 0) {
+      if (results.length) {
         setResults([...results, ...response.data.results]);
       } else {
         setResults(response.data.results);

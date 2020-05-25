@@ -1,8 +1,9 @@
 import styled from 'styled-components/native';
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 
-export const Container = styled.ScrollView`
+export const Container = styled.View`
   background: #fff;
+  height: 100%;
 `;
 
 export const Card = styled.View.attrs({
@@ -67,4 +68,8 @@ export const CardDescription = styled.Text`
 
 export const Pagination = styled.View`
   margin: 50px 0;
+`;
+
+export const Loading = styled.View`
+  padding: 25px 0;
 `;

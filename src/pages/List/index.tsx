@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { ActivityIndicator } from 'react-native';
+import { FlatList } from 'react-native-gesture-handler';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import {
   Container,
@@ -11,7 +13,9 @@ import {
   CardPress,
   CardDescription,
   Pagination,
+  Loading,
 } from './styles';
+import { Result } from '~/models/Result';
 import { Popular } from '~/models/Popular';
 import api from '~/services/api';
 
@@ -29,57 +33,84 @@ interface Props {
 
 const List: React.FC<Props> = ({ navigation, route }) => {
   const { title, type } = route.params;
+  const [loading, setLoading] = useState<boolean>(false);
   const [popular, setPopular] = useState<Popular>();
+  const [results, setResults] = useState<Result[]>([]);
+  const [page, setPage] = useState<number>(1);
 
   navigation.setOptions({
     title,
   });
 
   useEffect(() => {
-    const getPopular = async () => {
-      const response = await api.get(`movie/${type}`);
+    const getMovies = async () => {
+      setLoading(true);
+      const response = await api.get(`movie/${type}`, {
+        params: {
+          page,
+        },
+      });
 
-      setPopular(response.data);
+      setLoading(false);
+
+      setResults([...results, ...response.data.results]);
     };
 
-    getPopular();
-  }, [type]);
+    getMovies();
+  }, [page]);
 
   const handlePressCard = (id: number) => {
     navigation.navigate('Detail', { id });
   };
 
+  const renderItem = ({ item }) => (
+    <CardPress key={item.id} onPress={() => handlePressCard(item.id)}>
+      <Card>
+        <CardImage
+          source={{
+            uri: `https://image.tmdb.org/t/p/w500/${item.poster_path}`,
+          }}
+        />
+        <CardBody>
+          <CardTitle>
+            {item.title.length > 15
+              ? `${item.title.substring(0, 14)}...`
+              : item.title}
+          </CardTitle>
+          <CardSubtitle>
+            <Icon name="star" size={18} color="#f7b100" />
+            <CardSubtitleText>{item.vote_average}</CardSubtitleText>
+          </CardSubtitle>
+          <CardDescription>
+            {item.overview.length > 100
+              ? `${item.overview.substring(0, 100)} ...`
+              : item.overview}
+          </CardDescription>
+        </CardBody>
+      </Card>
+    </CardPress>
+  );
+
+  const renderFooter = () => {
+    if (!loading) return null;
+    return (
+      <Loading>
+        <ActivityIndicator />
+      </Loading>
+    );
+  };
+
   return (
     <Container>
-      {popular &&
-        popular.results.map((movie) => (
-          <CardPress key={movie.id} onPress={() => handlePressCard(movie.id)}>
-            <Card>
-              <CardImage
-                source={{
-                  uri: `https://image.tmdb.org/t/p/w500/${movie.poster_path}`,
-                }}
-              />
-              <CardBody>
-                <CardTitle>
-                  {movie.title.length > 15
-                    ? `${movie.title.substring(0, 14)}...`
-                    : movie.title}
-                </CardTitle>
-                <CardSubtitle>
-                  <Icon name="star" size={18} color="#f7b100" />
-                  <CardSubtitleText>{movie.vote_average}</CardSubtitleText>
-                </CardSubtitle>
-                <CardDescription>
-                  {movie.overview.length > 100
-                    ? `${movie.overview.substring(0, 100)} ...`
-                    : movie.overview}
-                </CardDescription>
-              </CardBody>
-            </Card>
-          </CardPress>
-        ))}
-      <Pagination />
+      {results && (
+        <FlatList
+          data={results}
+          renderItem={renderItem}
+          onEndReached={() => setPage(page + 1)}
+          onEndReachedThreshold={0.1}
+          ListFooterComponent={renderFooter}
+        />
+      )}
     </Container>
   );
 };
